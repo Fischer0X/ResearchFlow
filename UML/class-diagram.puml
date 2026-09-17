@@ -1,0 +1,14 @@
+@startuml
+class ApplicationUser
+class ResearchStudy
+class ResearchPhase
+class ActivityLog
+enum ResearchPriority
+enum ResearchStatus
+ApplicationUser "1" -- "*" ResearchStudy : creates
+ResearchStudy "1" *-- "*" ResearchPhase
+ApplicationUser "0..1" -- "*" ResearchPhase : assigned
+ResearchPhase "0..1" <-- "*" ResearchPhase : parent
+ResearchPhase "1" *-- "*" ActivityLog
+ApplicationUser "1" -- "*" ActivityLog : changed by
+@enduml

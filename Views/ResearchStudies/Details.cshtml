@@ -1,0 +1,14 @@
+@model ResearchStudy
+@{
+    ViewData["Title"] = Model.Title;
+    var roots = Model.Phases.Where(x => x.ParentPhaseId == null).ToList();
+}
+<div class="page-head"><div><h1>@Model.Title</h1><p>@Model.Description</p></div><div><a class="btn btn-primary" asp-controller="Kanban" asp-action="Board" asp-route-studyId="@Model.Id">Kanban</a><a class="btn btn-outline-primary" asp-controller="Reports" asp-action="StudyProgress" asp-route-studyId="@Model.Id">التقرير</a><a class="btn btn-outline-secondary" asp-controller="ActivityLogs" asp-action="Index" asp-route-studyId="@Model.Id">السجل</a></div></div><div class="stats"><div>البداية<b>@Model.StartDate.ToString("yyyy/MM/dd")</b></div><div>النهاية<b>@Model.ExpectedEndDate.ToString("yyyy/MM/dd")</b></div><div>المنشئ<b>@Model.CreatedBy.FullName</b></div><div>العناصر<b>@Model.Phases.Count</b></div></div>
+<div class="page-head"><h2>المراحل والإجراءات</h2>@if(User.IsInRole("LabManager")){
+    <a class="btn btn-primary" asp-controller="ResearchPhases" asp-action="Create" asp-route-studyId="@Model.Id">إضافة مرحلة</a>
+}
+</div>@foreach(var phase in roots){
+<div class="rowx"><div><b>@phase.Title</b><small>@(phase.AssignedResearcher?.FullName ?? "غير معين")</small></div><span>@phase.Status</span></div>@foreach(var child in Model.Phases.Where(x=>x.ParentPhaseId==phase.Id)){
+<div class="rowx child"><a asp-controller="ResearchPhases" asp-action="Details" asp-route-id="@child.Id">@child.Title</a><span>@child.Status</span></div>
+}
+}

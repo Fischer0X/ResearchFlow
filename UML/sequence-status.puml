@@ -1,0 +1,16 @@
+@startuml
+actor Researcher
+boundary View
+control KanbanController
+control PhaseService
+database SQLServer
+Researcher->View: choose status
+View->KanbanController: POST ChangeStatus
+KanbanController->KanbanController: authorize
+KanbanController->PhaseService: Change
+PhaseService->SQLServer: Begin transaction
+PhaseService->SQLServer: Update phase
+PhaseService->SQLServer: Insert ActivityLog
+PhaseService->SQLServer: Commit
+KanbanController-->View: redirect
+@enduml

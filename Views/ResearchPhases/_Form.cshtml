@@ -1,0 +1,5 @@
+@model PhaseFormViewModel
+<input asp-for="ResearchStudyId" type="hidden"><div asp-validation-summary="ModelOnly" class="text-danger"></div><div class="mb-3"><label asp-for="Title">العنوان</label><input asp-for="Title" class="form-control"></div>
+<div class="mb-3"><label asp-for="Description">الوصف</label><textarea asp-for="Description" class="form-control"></textarea></div>
+<div class="row"><div class="col"><label asp-for="Priority">الأولوية</label><select asp-for="Priority" asp-items="Html.GetEnumSelectList<ResearchPriority>()" class="form-select"></select></div><div class="col"><label asp-for="AssignedResearcherId">الباحث</label><select asp-for="AssignedResearcherId" asp-items="Model.Researchers" class="form-select"><option value="">غير معين</option></select></div><div class="col"><label asp-for="ParentPhaseId">المرحلة الرئيسية</label><select asp-for="ParentPhaseId" asp-items="Model.ParentPhases" class="form-select"><option value="">مرحلة رئيسية</option></select></div></div>
+<button class="btn btn-primary mt-3">حفظ</button>

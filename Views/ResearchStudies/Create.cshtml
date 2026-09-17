@@ -1,0 +1,9 @@
+@model StudyFormViewModel
+@{
+    ViewData["Title"] = "دراسة جديدة";
+}
+<div class="panel"><h1>إنشاء دراسة بحثية</h1><form method="post"><partial name="_Form" model="Model" /></form></div>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

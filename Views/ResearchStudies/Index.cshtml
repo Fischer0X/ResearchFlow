@@ -1,0 +1,11 @@
+@model IEnumerable<ResearchStudy>
+@{
+    ViewData["Title"] = "الدراسات";
+}
+<div class="page-head"><h1>الدراسات البحثية</h1>@if(User.IsInRole("LabManager")){
+    <a class="btn btn-primary" asp-action="Create">دراسة جديدة</a>
+}
+</div><div class="row g-4">@foreach(var item in Model){var total=item.Phases.Count;var done=item.Phases.Count(x=>x.Status==ResearchStatus.Completed);var percentage=total==0?0:Math.Round(done*100.0/total);
+<div class="col-md-6"><article class="cardx"><h3>@item.Title</h3><p>@item.Description</p><div class="progress"><div class="progress-bar" style="width:@percentage%"></div></div><div>@percentage% - @total عنصر</div><a class="stretched-link" asp-action="Details" asp-route-id="@item.Id"></a></article></div>
+}
+</div>

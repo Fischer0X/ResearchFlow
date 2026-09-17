@@ -1,0 +1,8 @@
+@startuml
+[Browser]-->[Razor Views]
+[Razor Views]-->[Controllers]
+[Controllers]-->[Services]
+[Services]-->[EF Core 10]
+[EF Core 10]-->[SQL Server]
+[ASP.NET Core Identity]-->[SQL Server]
+@enduml

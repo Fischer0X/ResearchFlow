@@ -1,0 +1,3 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+<ul class="navbar-nav">@if(SignInManager.IsSignedIn(User)){<li><form asp-area="Identity" asp-page="/Account/Logout" method="post"><button class="btn btn-link nav-link">تسجيل الخروج</button></form></li>}else{<li><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">تسجيل الدخول</a></li>}</ul>

@@ -1,0 +1,9 @@
+@startuml
+left to right direction
+actor "مدير المختبر" as M
+actor "الباحث" as R
+rectangle ResearchFlow { usecase "إدارة الدراسات" as A; usecase "إدارة المراحل" as B; usecase "التعيين" as C; usecase "Kanban" as D; usecase "تغيير الحالة" as E; usecase "سجل النشاط" as F; usecase "التقرير" as G; usecase "أعمالي" as H }
+M-->A;M-->B;M-->C;M-->D;M-->E;M-->F;M-->G
+R-->D;R-->E;R-->F;R-->G;R-->H
+E..>F: <<include>>
+@enduml

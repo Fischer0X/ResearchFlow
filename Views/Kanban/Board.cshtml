@@ -1,0 +1,14 @@
+@model KanbanViewModel
+@{
+    ViewData["Title"] = "لوحة Kanban";
+}
+<div class="page-head"><h1>@Model.StudyTitle</h1></div><div class="kanban">@foreach(var column in new[]{("مخطط",Model.Planned),("قيد التجربة",Model.InProgress),("مكتمل",Model.Completed)}){
+<section><header><h3>@column.Item1</h3><span>@column.Item2.Count</span></header>@foreach(var item in column.Item2){
+    <article class="task"><b>@item.Title</b><p>@(item.AssignedResearcher?.FullName ?? "غير معين")</p><div class="d-flex gap-1 flex-wrap">@foreach(var status in Enum.GetValues<ResearchStatus>().Where(x=>x!=item.Status)){
+        <form asp-action="ChangeStatus" method="post"><input type="hidden" name="id" value="@item.Id"><input type="hidden" name="studyId" value="@Model.StudyId"><input type="hidden" name="status" value="@status"><button class="btn btn-sm btn-outline-primary">@status</button></form>
+    }
+</div></article>
+}
+</section>
+}
+</div>

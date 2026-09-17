@@ -1,0 +1,10 @@
+@model ResearchPhase
+@{
+    ViewData["Title"] = Model.Title;
+}
+<div class="page-head"><div><h1>@Model.Title</h1><p>@Model.Description</p></div><span class="badge bg-primary">@Model.Status</span></div><div class="stats"><div>الدراسة<b>@Model.ResearchStudy.Title</b></div><div>الأولوية<b>@Model.Priority</b></div><div>الباحث<b>@(Model.AssignedResearcher?.FullName ?? "غير معين")</b></div><div>المرحلة الرئيسية<b>@(Model.ParentPhase?.Title ?? "-")</b></div></div>@if(User.IsInRole("LabManager")){
+<div class="mt-4"><a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.Id">تعديل</a>@if(Model.ParentPhaseId==null){
+    <a class="btn btn-outline-primary" asp-action="Create" asp-route-studyId="@Model.ResearchStudyId" asp-route-parentId="@Model.Id">إضافة إجراء</a>
+}
+<a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.Id">حذف</a></div>
+}

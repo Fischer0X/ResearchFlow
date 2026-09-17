@@ -1,0 +1,10 @@
+@model IEnumerable<ActivityLog>
+@{
+    ViewData["Title"] = "سجل النشاط";
+}
+<div class="page-head"><h1>سجل تغييرات الحالة</h1></div>
+<div class="panel">
+    <table class="table"><thead><tr><th>العنصر</th><th>من</th><th>إلى</th><th>بواسطة</th><th>التاريخ</th></tr></thead><tbody>@foreach(var item in Model){
+<tr><td>@item.ResearchPhase.Title</td><td>@item.OldStatus</td><td>@item.NewStatus</td><td>@item.ChangedByUser.FullName</td><td>@item.ChangedAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm")</td></tr>
+}
+</tbody></table></div>

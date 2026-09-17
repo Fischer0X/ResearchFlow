@@ -1,0 +1,8 @@
+@model IEnumerable<ResearchPhase>
+@{
+    ViewData["Title"] = "أعمالي";
+}
+<div class="page-head"><h1>الأعمال المسندة إلي</h1></div><div class="panel"><table class="table"><thead><tr><th>العنصر</th><th>الدراسة</th><th>الأولوية</th><th>الحالة</th></tr></thead><tbody>@foreach(var item in Model){
+<tr><td><a asp-action="Details" asp-route-id="@item.Id">@item.Title</a></td><td>@item.ResearchStudy.Title</td><td>@item.Priority</td><td>@item.Status</td></tr>
+}
+</tbody></table></div>

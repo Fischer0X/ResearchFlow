@@ -1,0 +1,9 @@
+@model StudyReportViewModel
+@{
+    ViewData["Title"] = "التقرير";
+}
+<div class="page-head"><h1>@Model.StudyTitle</h1><div class="score">@Model.Percentage%</div></div><div class="stats"><div>الإجمالي<b>@Model.Total</b></div><div>مخطط<b>@Model.Planned</b></div><div>قيد التجربة<b>@Model.InProgress</b></div><div>مكتمل<b>@Model.Completed</b></div></div>
+<div class="panel mt-4"><h2>إنجاز الباحثين</h2><table class="table"><thead><tr><th>الباحث</th><th>المسند</th><th>المكتمل</th></tr></thead><tbody>@foreach(var item in Model.Researchers){
+    <tr><td>@item.Name</td><td>@item.Assigned</td><td>@item.Completed</td></tr>
+}
+</tbody></table></div>
