@@ -10,10 +10,8 @@
         <p class="text-muted">قم بتعديل بيانات الدراسة ثم احفظ التغييرات.</p>
     </div>
 
-    <a class="btn btn-secondary"
-       asp-action="Details"
-       asp-route-id="@Model.Id">
-        العودة للتفاصيل
+    <a class="btn btn-secondary" asp-action="Index">
+        العودة للدراسات
     </a>
 </div>
 
@@ -32,9 +30,7 @@
                 حفظ التعديلات
             </button>
 
-            <a class="btn btn-outline-secondary"
-               asp-action="Details"
-               asp-route-id="@Model.Id">
+            <a class="btn btn-outline-secondary" asp-action="Index">
                 إلغاء
             </a>
         </div>
